@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MCQ Entry Test</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 {
+        color: #333;
+        margin-top: 50px;
+      }
+
+      #start-btn {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      #question-container {
+        display: none;
+        margin-top: 50px;
+      }
+
+      #question {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+
+      #choices button {
+        display: block;
+        width: 200px;
+        margin: 10px auto;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: none;
+        background-color: #3498db;
+        color: white;
+        transition: background-color 0.3s ease;
+      }
+
+      #choices button:hover {
+        background-color: #2980b9;
+      }
+
+      #skip-btn {
+        margin-top: 20px;
+      }
+
+      #timer {
+        font-size: 20px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to the Entry Test</h1>
+    <h1>Mr Ayaz Ali Rajpar</h1>
+    <h3>Please note that you have only 10 minutes to solve the test</h3>
+    <button id="start-btn">Start Test</button>
+
+    <div id="question-container">
+      <div id="question"></div>
+      <div id="choices"></div>
+      <button id="skip-btn">Skip</button>
+      <div id="timer">Time Left: <span id="time">60</span> seconds</div>
+    </div>
+
+    <script>
+      const questions = [
+        {
+          question: "What is the capital of France?",
+          choices: ["London", "Paris", "Berlin", "Rome"],
+          correctAnswer: 1,
+        },
+        {
+          question: "Which planet is known as the Red Planet?",
+          choices: ["Venus", "Mars", "Jupiter", "Saturn"],
+          correctAnswer: 1,
+        },
+        {
+          question: "Who wrote 'To Kill a Mockingbird'?",
+          choices: [
+            "Mark Twain",
+            "Harper Lee",
+            "F. Scott Fitzgerald",
+            "Ernest Hemingway",
+          ],
+          correctAnswer: 1,
+        },
+        {
+          question: "What is the chemical symbol for water?",
+          choices: ["H2O", "CO2", "O2", "HCl"],
+          correctAnswer: 0,
+        },
+        {
+          question: "Who painted the Mona Lisa?",
+          choices: [
+            "Leonardo da Vinci",
+            "Pablo Picasso",
+            "Vincent van Gogh",
+            "Michelangelo",
+          ],
+          correctAnswer: 0,
+        },
+        {
+          question: "Which country is known as the Land of the Rising Sun?",
+          choices: ["China", "India", "Japan", "South Korea"],
+          correctAnswer: 2,
+        },
+        {
+          question: "What is the largest mammal in the world?",
+          choices: ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
+          correctAnswer: 1,
+        },
+        {
+          question: "What is the capital of Australia?",
+          choices: ["Sydney", "Melbourne", "Canberra", "Perth"],
+          correctAnswer: 2,
+        },
+        {
+          question: "Who discovered penicillin?",
+          choices: [
+            "Louis Pasteur",
+            "Alexander Fleming",
+            "Marie Curie",
+            "Albert Einstein",
+          ],
+          correctAnswer: 1,
+        },
+        {
+          question: "What is the tallest mountain in the world?",
+          choices: ["K2", "Mount Everest", "Kangchenjunga", "Lhotse"],
+          correctAnswer: 1,
+        },
+      ];
+
+      let currentQuestionIndex = 0;
+      let timer;
+      let timeLeft = 60;
+      let score = 0;
+
+      const welcomeScreen = document.querySelector("h1");
+      const startBtn = document.getElementById("start-btn");
+      const questionContainer = document.getElementById("question-container");
+      const questionDisplay = document.getElementById("question");
+      const choicesDisplay = document.getElementById("choices");
+      const skipBtn = document.getElementById("skip-btn");
+      const timeDisplay = document.getElementById("time");
+
+      startBtn.addEventListener("click", startTest);
+      skipBtn.addEventListener("click", nextQuestion);
+
+      function startTest() {
+        welcomeScreen.style.display = "none";
+        startBtn.style.display = "none";
+        questionContainer.style.display = "block";
+        timer = setInterval(updateTimer, 1000);
+        displayQuestion();
+      }
+
+      function displayQuestion() {
+        const currentQuestion = questions[currentQuestionIndex];
+        questionDisplay.textContent = currentQuestion.question;
+        choicesDisplay.innerHTML = "";
+
+        currentQuestion.choices.forEach((choice, index) => {
+          const choiceBtn = document.createElement("button");
+          choiceBtn.textContent = choice;
+          choiceBtn.addEventListener("click", () => checkAnswer(index));
+          choicesDisplay.appendChild(choiceBtn);
+        });
+      }
+
+      function checkAnswer(choiceIndex) {
+        clearInterval(timer);
+        const currentQuestion = questions[currentQuestionIndex];
+        if (choiceIndex === currentQuestion.correctAnswer) {
+          score++;
+        }
+        nextQuestion();
+      }
+
+      function nextQuestion() {
+        clearInterval(timer);
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+          timeLeft = 60;
+          timer = setInterval(updateTimer, 1000);
+          displayQuestion();
+        } else {
+          displayScore();
+        }
+      }
+
+      function updateTimer() {
+        timeLeft--;
+        timeDisplay.textContent = timeLeft + " seconds";
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          nextQuestion();
+        }
+      }
+
+      function displayScore() {
+        questionContainer.innerHTML = "";
+        const scoreDisplay = document.createElement("div");
+        scoreDisplay.textContent =
+          "You scored " + score + " out of " + questions.length + " questions.";
+        questionContainer.appendChild(scoreDisplay);
+      }
+    </script>
+  </body>
+</html>

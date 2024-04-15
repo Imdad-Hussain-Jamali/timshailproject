@@ -1,0 +1,64 @@
+{% extends 'base.html' %} {% block title %}Timshail{% endblock %}
+
+<body>
+  <main>
+    {% block content %}
+    <section id="hero" class="d-flex align-items-center">
+      <div
+        class="container position-relative"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        <div class="row justify-content-center">
+          <div class="col-xl-7 col-lg-9 text-center">
+            <h1>Jornal Knowledge Sample Test</h1>
+            <h2>We are team of talented designers</h2>
+          </div>
+        </div>
+        <div class="text-center">
+          <a href="#about" class="btn-get-started scrollto">Get Started</a>
+        </div>
+<!-- Question Box Starts From Here-->
+<form action="/submit" method="post">       
+<div class="row icon-boxes">
+  {% for question in questions %}     
+  <div
+           
+            data-aos="zoom-in"
+            data-aos-delay="200"
+          >
+            <div class="icon-box">
+              <div class="icon"></div>
+              
+              <h4 class="title"><a href="">{{ question['question'] }}</a></h4>
+              
+              <p class="description">
+                {% for option in question['options'] %}
+                <input type="radio" class="btn-check" name="{{ question['question'] }}" id="{{ option }}" value="{{ option }}" autocomplete="off" >
+                <label class="btn btn-secondary" for="{{ option }}">{{ option }}</label>
+                {% endfor %}
+      
+              </p>
+            </div>
+            {% endfor %}
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+    <!-- Question Box Starts From Here-->   
+    <!-- End Hero -->
+      {% if start > 0 %}
+      <a href="/oktest?page={{ context.page - 1 }}">Previous</a>
+      {% endif %}
+
+    <!-- {% if end < total_questions %}
+        <a href="/oktest?page={{ context.page + 1 }}">Next</a>
+    {% endif %} -->
+
+    {% endblock %}
+
+    
+  </main>
+  <!-- End Sevices Section -->
+  <!--Scripts Section-->
+  <!-- SERVICES SECTIONS JS-->
+</body>

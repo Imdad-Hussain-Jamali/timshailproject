@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block title %}Timshail{% endblock %}
+
+  <body>
+
+    <main class="main">
+      {% block content %} 
+      <!-- Page Title -->
+      <div class="page-title" data-aos="fade">
+        <div class="heading">
+          <div class="container">
+            <div class="row d-flex justify-content-center text-center">
+              <div class="col-lg-8">
+                <h1 class="">About Us<br /></h1>
+                <p class="mb-0">
+                  "At Timshail, we are dedicated to empowering individuals on
+                  their learning journeys by providing innovative and
+                  personalized solutions for skill assessment and development.
+                  Our platform offers real-time feedback and practice entry
+                  tests to help users enhance their knowledge, confidence, and
+                  performance in various academic and professional fields. With
+                  a focus on accessibility, customization, and expert guidance,
+                  we strive to support learners at every step towards achieving
+                  their goals."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <nav class="breadcrumbs">
+          <div class="container">
+            <ol>
+              <li><a href="index.html">Home</a></li>
+              <li class="current">About Us<br /></li>
+            </ol>
+          </div>
+        </nav>
+      </div>
+      <!-- End Page Title -->
+
+      <!-- About Us Section -->
+      <section id="about-us" class="section about-us">
+        <div class="container">
+          <div class="row gy-4">
+            <div
+              class="col-lg-6 order-1 order-lg-2"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <img src="assets/img/about-2.jpg" class="img-fluid" alt="" />
+            </div>
+
+            <div
+              class="col-lg-6 order-2 order-lg-1 content"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <h3>"Empowering Growth Through Assessment & Learning"</h3>
+              <p class="fst-italic">
+                Democratizing access to quality education through innovative
+                assessment tools.
+              </p>
+              <ul>
+                <li>
+                  <i class="bi bi-check-circle"></i>
+                  <span
+                    >Fostering continuous learning with personalized feedback
+                    and practice tests.</span
+                  >
+                </li>
+                <li>
+                  <i class="bi bi-check-circle"></i>
+                  <span
+                    >Empowering individuals to excel in academic and
+                    professional pursuits through comprehensive skill
+                    development resources.</span
+                  >
+                </li>
+                <li>
+                  <i class="bi bi-check-circle"></i>
+                  <span
+                    >Timshail is committed to revolutionizing skill assessment
+                    and development through our user-centric platform. Our
+                    agenda revolves around democratizing access to quality
+                    education and fostering continuous learning. We empower
+                    users by offering personalized skill assessments, real-time
+                    feedback, and comprehensive practice tests for various entry
+                    exams. Whether you're a student preparing for university
+                    admissions or a professional aiming to enhance your
+                    qualifications, Timshail equips you with the tools and
+                    resources needed to succeed. Join us on your journey towards
+                    achieving your educational and career aspirations."</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      {% endblock %}
+      <!-- /About Us Section -->
+
+      <!-- /Stats About Section -->
+    </main>
+
+  </body>
+</html>
